@@ -1,6 +1,5 @@
 use std::path::{Path};
 use std::fs::{self, File};
-use std::env;
 use std::io::Write;
 use clap::{App, Arg};
 
