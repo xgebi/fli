@@ -20,7 +20,7 @@ fn main() {
                 .subcommand(
                     App::new("file")
                         .about("Create a new file")
-                        .version("1.1")
+                        .version("1.0")
                         .author("Sarah Gebauer <sarah@sarahgebauer.com>")
                         .arg(
                             Arg::new("name")
