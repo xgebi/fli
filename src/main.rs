@@ -29,7 +29,8 @@ fn main() {
                                 .long("name")
                                 .takes_value(true),
                         )
-                        .arg(Arg::new("path").about("path to file's directory")),
+                        .arg(Arg::new("path")
+                            .about("path to file's directory")),
                 ),
         )
         .get_matches();
