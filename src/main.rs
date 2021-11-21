@@ -52,6 +52,7 @@ fn create_new_package(second_matches: &&ArgMatches) {
                     let _ = fs::create_dir(dir_path);
                     let init_path = dir_path.clone().join("__init__.py");
                     let _ = File::create(init_path);
+                    println!("{}/__init__.py was created", path);
                 } else {
                     println!("Can't override existing module");
                 }
@@ -65,10 +66,12 @@ fn create_new_package(second_matches: &&ArgMatches) {
                     let init_path = dir_path.clone().join("__init__.py");
                     let mut init = File::create(init_path).unwrap();
                     let _ = init.write(format!("from flask import Blueprint\n{} = Blueprint('{}', __name__)\nfrom {} import routes", &name, &name, &path).as_ref());
+                    println!("{}/__init__.py was created", transformed);
 
                     let routes_path = dir_path.clone().join("routes.py");
                     let mut routes = File::create(routes_path).unwrap();
                     let _ = routes.write(format!("from {} import {}", &path, &name).as_ref());
+                    println!("{}/routes.py was created", transformed);
                 } else {
                     println!("Can't override existing module");
                 }
@@ -88,14 +91,15 @@ fn create_new_file(second_matches: &&ArgMatches) {
             let file_path = dir_path.clone().join(format!("{}.py", name));
             if !file_path.exists() {
                 let _ = File::create(file_path);
+                println!("{}/{}.py was created", path, name);
             }
         } else {
             let file_path_str = format!("./{}.py", name);
             let file_path = Path::new(&file_path_str);
             dbg!(file_path);
             if !file_path.exists() {
-                println!("filed doesn't exist");
                 let _ = File::create(file_path);
+                println!("{}.py was created", name);
             }
         }
     }
