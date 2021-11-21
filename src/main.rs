@@ -70,7 +70,7 @@ fn create_new_package(second_matches: &&ArgMatches) {
 
                     let routes_path = dir_path.clone().join("routes.py");
                     let mut routes = File::create(routes_path).unwrap();
-                    let _ = routes.write(format!("from {} import {}", &path, &name).as_ref());
+                    let _ = routes.write(format!("from flask import render_template, request, flash, redirect, url_for, current_app\n\nfrom {} import {}", &path, &name).as_ref());
                     println!("{}/routes.py was created", transformed);
                 } else {
                     println!("Can't override existing module");
