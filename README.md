@@ -23,3 +23,9 @@ fli new file -n <name> <path>
 ```
 
 This command will create a new file called `<name>.py` in current directory when path is empty or at the specified directory.
+
+## Build instructions
+
+```shell
+cargo build -r
+```

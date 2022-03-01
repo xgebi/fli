@@ -1,36 +1,36 @@
-use clap::{App, Arg, ArgMatches};
+use clap::{Command, Arg, ArgMatches};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::Path;
 
 fn main() {
-    let matches = App::new("fli")
+    let matches = Command::new("fli")
         .subcommand(
-            App::new("new")
+            Command::new("new")
                 .about("Create something new")
                 .version("1.0")
                 .author("Sarah Gebauer <sarah@sarahgebauer.com>")
                 .subcommand(
-                    App::new("package")
+                    Command::new("package")
                         .about("Create new package")
                         .version("1.0")
                         .author("Sarah Gebauer <sarah@sarahgebauer.com>")
-                        .arg(Arg::new("path").about("path to package")),
+                        .arg(Arg::new("path").help("path to package")),
                 )
                 .subcommand(
-                    App::new("file")
+                    Command::new("file")
                         .about("Create a new file")
                         .version("1.0")
                         .author("Sarah Gebauer <sarah@sarahgebauer.com>")
                         .arg(
                             Arg::new("name")
-                                .about("Name of the python file")
+                                .help("Name of the python file")
                                 .short("n".parse().unwrap())
                                 .long("name")
                                 .takes_value(true),
                         )
                         .arg(Arg::new("path")
-                            .about("path to file's directory")),
+                            .help("path to file's directory")),
                 ),
         )
         .get_matches();
